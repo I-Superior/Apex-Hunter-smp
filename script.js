@@ -1,6 +1,52 @@
-// Initialize AOS (Animate On Scroll) if available
+// Initialize AOS animations if available
 if (window.AOS) {
-  AOS.init({ duration: 900, once: true, offset: 80 });
+  AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
+}
+
+// Inject decorative gradient background blobs into the page (non-interactive)
+(function addBackgroundBlobs() {
+  try {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'site-gradient-bg';
+    // two decorative blobs
+    const b1 = document.createElement('div'); b1.className = 'animated-blob blob-1'; wrapper.appendChild(b1);
+    const b2 = document.createElement('div'); b2.className = 'animated-blob blob-2'; wrapper.appendChild(b2);
+    document.body.insertBefore(wrapper, document.body.firstChild);
+  } catch (e) { /* fail silently */ }
+})();
+
+// Mobile menu: close menu when a link clicked (better UX)
+document.addEventListener('click', function (e) {
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (!mobileMenu) return;
+  if (e.target.tagName === 'A' && mobileMenu.classList && !mobileMenu.classList.contains('hidden')) {
+    // if link is inside mobile menu, hide it
+    if (mobileMenu.contains(e.target)) {
+      mobileMenu.classList.add('hidden');
+    }
+  }
+});
+
+// Simple toast utility (used by other scripts)
+function showToast(msg, timeout = 3000) {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+  const el = document.createElement('div');
+  el.className = 'toast bg-gray-800/90 text-white px-4 py-2 rounded shadow';
+  el.style.pointerEvents = 'auto';
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => { el.style.transition = 'opacity .25s'; el.style.opacity = '0'; setTimeout(()=>el.remove(), 300); }, timeout);
+}
+
+// Clipboard helper (used by copy buttons)
+function copyToClipboard(text) {
+  if (!navigator.clipboard) {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); showToast('Copied to clipboard'); } catch(e){ showToast('Copy failed'); }
+    ta.remove(); return;
+  }
+  navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'), () => showToast('Copy failed'));
 }
 
 // Smooth scroll for in-page anchors (covers browsers without native behavior)
@@ -11,56 +57,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     e.preventDefault();
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-});
-
-// copy-to-clipboard + toast feedback
-function copyToClipboard(text) {
-  if (!navigator.clipboard) {
-    fallbackCopy(text);
-    showToast('Copied to clipboard');
-    return;
-  }
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('Copied: ' + text);
-  }, () => {
-    showToast('Unable to copy');
-  });
-}
-function fallbackCopy(text) {
-  const ta = document.createElement('textarea');
-  ta.value = text;
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand('copy'); } catch (e) {}
-  ta.remove();
-}
-
-// basic toast implementation
-function showToast(message, timeout = 3000) {
-  const container = document.getElementById('toast-container');
-  if (!container) return;
-  const el = document.createElement('div');
-  el.className = 'toast';
-  el.textContent = message;
-  container.appendChild(el);
-  // auto remove with fade-out
-  setTimeout(() => {
-    el.style.animation = 'toast-out .28s ease forwards';
-    setTimeout(() => el.remove(), 280);
-  }, timeout);
-}
-
-// Optional: add nav styling toggle on scroll (if present)
-window.addEventListener('scroll', function() {
-  const nav = document.querySelector('nav');
-  if (!nav) return;
-  if (window.scrollY > 50) {
-    nav.classList.add('bg-gray-800');
-    nav.classList.remove('bg-gray-800/80');
-  } else {
-    nav.classList.add('bg-gray-800/80');
-    nav.classList.remove('bg-gray-800');
-  }
 });
 
 // Falling items: lightweight emoji-based "Minecraft" items

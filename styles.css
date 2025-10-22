@@ -167,3 +167,109 @@ code {
 
 /* ensure container z-index placement */
 #home #fall-container { z-index: 20; }
+
+/* Site-wide animated design and polish
+   ...existing code...
+*/
+
+/* Gradient page background + soft vignette */
+.site-gradient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,0.08), transparent 8%),
+              radial-gradient(1000px 500px at 90% 80%, rgba(236,72,153,0.06), transparent 10%),
+              linear-gradient(180deg,#071025 0%, #071228 60%, #0b1220 100%);
+  pointer-events: none;
+}
+
+/* Animated soft blobs for depth (placed inside body) */
+.animated-blob {
+  position: absolute;
+  width: 36vmax;
+  height: 36vmax;
+  border-radius: 50%;
+  filter: blur(60px) saturate(120%);
+  opacity: 0.18;
+  transform: translate3d(0,0,0);
+  animation: floaty 12s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+.animated-blob.blob-1 { background: linear-gradient(135deg,#60a5fa,#7c3aed); top:-10%; left:-18%; animation-duration:18s; opacity:0.15; }
+.animated-blob.blob-2 { background: linear-gradient(135deg,#fb7185,#f97316); bottom:-12%; right:-14%; animation-duration:22s; opacity:0.14; }
+@keyframes floaty {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6%) scale(1.03); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Gradient text (reusable) */
+.gradient-text {
+  background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 45%, #f472b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Subtle animated logo glow */
+.logo-glow {
+  position: relative;
+}
+.logo-glow::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, rgba(99,102,241,0.06), rgba(244,114,182,0.04));
+  filter: blur(10px);
+  opacity: 0.9;
+  z-index: -1;
+  transition: opacity .35s ease;
+}
+.logo-glow:hover::after { opacity: 1; transform: scale(1.02); }
+
+/* Card uplift & shine */
+.card-animated {
+  transition: transform .32s cubic-bezier(.2,.9,.2,1), box-shadow .32s ease;
+  will-change: transform;
+}
+.card-animated:hover {
+  transform: translateY(-10px) translateZ(0) scale(1.01);
+  box-shadow: 0 18px 48px rgba(2,6,23,0.6);
+}
+
+/* Button shine animation */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -30%;
+  width: 60%;
+  height: 180%;
+  background: rgba(255,255,255,0.08);
+  transform: rotate(25deg);
+  transition: transform .7s ease;
+}
+.btn-shine:hover::after {
+  transform: translateX(240%) rotate(25deg);
+}
+
+/* creators/rank card polish */
+.creator-card, .stat-card, .rank-card {
+  background: linear-gradient(180deg, rgba(6,8,15,0.5), rgba(12,14,20,0.6));
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* small responsive tweaks */
+@media (max-width: 640px) {
+  .gradient-text { font-size: 1.35rem; }
+  header h1, .hero-title { font-size: 2rem; }
+}
+
+/* Keep legacy classes harmless */
+.minecraft-bg, .minecraft-overlay, .fire-overlay { display: none; }

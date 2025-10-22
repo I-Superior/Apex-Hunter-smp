@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Hunter SMP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="fixed w-full bg-gray-800/80 backdrop-blur-sm z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold">Apex Hunter SMP</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-blue-400 transition">Home</a>
+                    <a href="#features" class="hover:text-blue-400 transition">Features</a>
+                    <a href="#join" class="hover:text-blue-400 transition">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-900">
+        <!-- falling items container (non-interactive overlay) now lives in the home section -->
+        <div id="fall-container" class="absolute inset-0 pointer-events-none z-20"></div>
+
+        <div class="container mx-auto px-6 relative z-10" data-aos="fade-up">
+            <h1 class="text-6xl md:text-8xl font-bold text-center mb-6">Welcome to<br>Apex Hunter SMP</h1>
+            <p class="text-xl text-center text-gray-300 max-w-2xl mx-auto">Join our thriving Minecraft community where survival meets adventure. Build, explore, and make friends in a unique SMP experience.</p>
+            <div class="mt-8 flex justify-center">
+                <button class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg text-lg font-semibold transition transform hover:scale-105">Join Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="py-20 bg-gray-800/90 relative">
+        <div class="minecraft-dark-bg absolute inset-0 opacity-10"></div>
+        <div class="container mx-auto px-6 relative">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-card" data-aos="fade-up">
+                    <h3 class="text-4xl font-bold text-green-400">24/7</h3>
+                    <p class="text-gray-300">Uptime</p>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-4xl font-bold text-green-400">1.20.4</h3>
+                    <p class="text-gray-300">Version</p>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-4xl font-bold text-green-400">500+</h3>
+                    <p class="text-gray-300">Players</p>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-4xl font-bold text-green-400">99.9%</h3>
+                    <p class="text-gray-300">Stability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 relative">
+        <div class="minecraft-cave-bg absolute inset-0 opacity-20"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Server Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-4">Community Focus</h3>
+                    <p class="text-gray-400">Build relationships and collaborate with players from around the world.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-4">Custom Plugins</h3>
+                    <p class="text-gray-400">Enjoy unique gameplay features and enhanced mechanics.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-bold mb-4">Regular Events</h3>
+                    <p class="text-gray-400">Participate in exciting community events and competitions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="connect" class="py-20 relative">
+        <div class="minecraft-dark-bg absolute inset-0 opacity-10"></div>
+        <div class="container mx-auto px-6 relative">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Connect to Server</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-gray-800/90 p-8 rounded-lg backdrop-blur-sm" data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-400">Java Edition</h3>
+                    <div class="space-y-4">
+                        <p class="text-gray-300">Server IP:</p>
+                        <div class="bg-gray-900 p-3 rounded-lg flex justify-between items-center">
+                            <code class="text-green-400">play.apexhunter.com</code>
+                            <button onclick="copyToClipboard('play.apexhunter.com')" class="text-sm bg-blue-600 px-3 py-1 rounded hover:bg-blue-700">Copy</button>
+                        </div>
+                        <p class="text-gray-300">Port: <span class="text-green-400">25565</span> (Default)</p>
+                        <p class="text-sm text-gray-400">Compatible with Java Edition 1.20.4</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800/90 p-8 rounded-lg backdrop-blur-sm" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-400">Bedrock Edition</h3>
+                    <div class="space-y-4">
+                        <p class="text-gray-300">Server IP:</p>
+                        <div class="bg-gray-900 p-3 rounded-lg flex justify-between items-center">
+                            <code class="text-green-400">bedrock.apexhunter.com</code>
+                            <button onclick="copyToClipboard('bedrock.apexhunter.com')" class="text-sm bg-purple-600 px-3 py-1 rounded hover:bg-purple-700">Copy</button>
+                        </div>
+                        <p class="text-gray-300">Port: <span class="text-green-400">19132</span></p>
+                        <p class="text-sm text-gray-400">Compatible with Bedrock Edition</p>
+                    </div>
+                </div>
+                <div class="col-span-1 md:col-span-2 text-center mt-8" data-aos="fade-up">
+                    <p class="text-xl text-gray-300">Cross-play enabled! Play with your friends on both Java and Bedrock editions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-8">Ready to Join?</h2>
+                <p class="text-gray-300 mb-8">Connect with us on Discord and become part of our growing community!</p>
+                <a href="https://discord.gg/rjjrJ9NhaQ" target="_blank" rel="noopener noreferrer" aria-label="Join our Discord server" class="inline-block bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg text-lg font-semibold transition transform hover:scale-105">Join Discord</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- toast container for copy feedback -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

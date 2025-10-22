@@ -1,0 +1,169 @@
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes minecraft-float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Remove these classes if they exist */
+.minecraft-bg,
+.minecraft-overlay,
+.fire-overlay {
+    display: none;
+}
+
+.minecraft-dark-bg {
+    background-image: url('https://raw.githubusercontent.com/PolyMC/PolyMC/develop/launcher/resources/backgrounds/background_3.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.minecraft-cave-bg {
+    background-image: url('https://raw.githubusercontent.com/PolyMC/PolyMC/develop/launcher/resources/backgrounds/background_5.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.minecraft-nether-bg {
+    background-image: url('https://raw.githubusercontent.com/PolyMC/PolyMC/develop/launcher/resources/backgrounds/background_4.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.stat-card {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: transform .28s ease, box-shadow .28s ease;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 40px rgba(2,6,23,0.6);
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+    animation: minecraft-float 4s ease-in-out infinite;
+}
+
+/* Base helpers */
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+/* Subtle "pixel" pattern to evoke Minecraft without external images */
+.minecraft-dark-bg,
+.minecraft-cave-bg {
+  background-color: #0f1724; /* dark slate fallback */
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 16px 16px, 16px 16px;
+  background-position: 0 0, 8px 8px;
+  background-repeat: repeat;
+}
+
+/* Slightly different tone for cave/bg usage */
+.minecraft-cave-bg { opacity: 0.12; }
+.minecraft-dark-bg { opacity: 0.08; }
+
+/* Small code block style used in connect section */
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  font-weight: 600;
+}
+
+/* Toast UI (copy feedback) */
+#toast-container { display:flex; flex-direction:column; gap:0.5rem; }
+.toast {
+  pointer-events: auto;
+  background: linear-gradient(180deg, rgba(17,24,39,0.95), rgba(15,23,42,0.95));
+  color: #e6edf3;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.6);
+  transform-origin: right bottom;
+  animation: toast-in .28s ease;
+  font-size: 0.95rem;
+}
+@keyframes toast-in { from { transform: translateY(8px) scale(.98); opacity:0 } to { transform: translateY(0) scale(1); opacity:1 } }
+@keyframes toast-out { from { opacity:1; transform: translateY(0) } to { opacity:0; transform: translateY(8px) } }
+
+/* utility: visually-hidden if needed */
+.sr-only { position: absolute !important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+
+/* keep any previously referenced overlay classes harmless if still present */
+.minecraft-bg, .minecraft-overlay, .fire-overlay { display: none; }
+
+/* responsive tweaks for header text */
+@media (min-width: 768px){
+  header h1 { line-height: 1; }
+}
+
+/* Falling items overlay and item styling */
+#fall-container { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+.fall-item {
+  position: absolute;
+  top: -8vh; /* start slightly above viewport */
+  will-change: transform, opacity;
+  display: inline-block;
+  user-select: none;
+  pointer-events: none;
+  transform-origin: center;
+  text-shadow: 0 6px 20px rgba(2,6,23,0.7), 0 1px 0 rgba(255,255,255,0.02);
+  opacity: 1;
+  /* fall = single accelerating drop that fades out, spin = optional slow rotation */
+  animation-name: fall, spin;
+  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1), linear;
+  animation-iteration-count: 1, infinite;
+}
+
+/* core free-fall: accelerate and fade out near the end */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  60% {
+    /* pick up speed */
+    transform: translateY(60vh) rotate(12deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(28deg);
+    opacity: 0;
+  }
+}
+
+/* slow continuous spin for subtle effect */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* type-specific glow tints */
+.fall-item.diamond { filter: drop-shadow(0 6px 14px rgba(56,189,248,0.28)); }
+.fall-item.gold    { filter: drop-shadow(0 6px 14px rgba(250,204,21,0.28)); }
+.fall-item.emerald { filter: drop-shadow(0 6px 14px rgba(52,211,153,0.26)); }
+.fall-item.sword   { filter: drop-shadow(0 6px 14px rgba(148,163,184,0.18)); }
+
+/* ensure container z-index placement */
+#home #fall-container { z-index: 20; }

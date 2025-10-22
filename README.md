@@ -54,11 +54,6 @@ Payments & webhooks
 - Use Stripe CLI for local webhook testing:
   - stripe listen --forward-to localhost:3000/webhook
 
-Tips for a beautiful repo
-- Add a short GIF that highlights the landing hero and a hover effect on a rank card.
-- Use a 640px-wide GIF; keep under ~3MB for GitHub display.
-- Add an `assets/preview.gif` and update the README image URL to point to it.
-
 Contributing
 - Fork → branch → PR. Keep UI changes focused and include screenshots/GIFs for visual updates.
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Rank - Apex Hunter SMP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="min-h-screen flex items-center justify-center p-6">
+        <div class="max-w-md w-full bg-gray-800 rounded-lg p-8 shadow-xl rank-card">
+            <h1 class="text-3xl font-bold text-center mb-6">Purchase MVP Rank</h1>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-700/50 p-4 rounded">
+                    <h2 class="text-xl font-semibold text-purple-400">MVP Package Details</h2>
+                    <ul class="mt-4 space-y-2 text-gray-300 rank-features">
+                        <li>👑 All VIP Features</li>
+                        <li>⚔️ MVP Kit (Netherite Gear)</li>
+                        <li>✨ Particle Effects</li>
+                        <li>🌟 3x Vote Rewards</li>
+                        <li>🎯 Custom Death Messages</li>
+                    </ul>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-2xl font-bold mb-2">$9.99</div>
+                    <p class="text-sm text-gray-400 mb-4">One-time purchase</p>
+                    
+                    <form action="/api/create-checkout" method="POST">
+                        <input type="hidden" name="rank" value="mvp">
+                        <input type="text" name="minecraft_username" placeholder="Minecraft Username" required
+                            class="w-full mb-4 bg-gray-700 border border-gray-600 rounded px-4 py-2 text-white">
+                        <button type="submit" 
+                            class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded transition purchase-btn">
+                            Purchase MVP
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center flex justify-center gap-4">
+                <a href="vip.html" class="text-gray-400 hover:text-gray-300 text-sm">← VIP Rank</a>
+                <a href="legend.html" class="text-gray-400 hover:text-gray-300 text-sm">Legend Rank →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

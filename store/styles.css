@@ -1,0 +1,26 @@
+.rank-card {
+    background: linear-gradient(180deg, rgba(31,41,55,0.7), rgba(17,24,39,0.8));
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.rank-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rank-features li::before {
+    content: '•';
+    color: currentColor;
+    opacity: 0.5;
+}
+
+.purchase-btn {
+    transition: all 0.2s ease;
+}
+
+.purchase-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

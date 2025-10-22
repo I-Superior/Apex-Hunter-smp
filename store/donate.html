@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Donate - Apex Hunter SMP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+  <div class="min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-lg w-full bg-gray-800 rounded-lg p-8 shadow-xl">
+      <h1 class="text-3xl font-bold text-center mb-4">Support the Server</h1>
+      <p class="text-gray-400 text-center mb-6">Your donation keeps the server online and funds events & improvements.</p>
+
+      <form action="/api/create-checkout" method="POST" id="donateForm" class="space-y-4">
+        <input type="hidden" name="type" value="donation">
+        <label class="block">
+          <span class="text-gray-300">Minecraft Username (optional)</span>
+          <input type="text" name="minecraft_username" class="mt-1 block w-full bg-gray-900 border border-gray-700 rounded px-3 py-2" placeholder="Your Minecraft name">
+        </label>
+
+        <label class="block">
+          <span class="text-gray-300">Amount (USD)</span>
+          <input id="amount" name="amount" type="number" step="0.01" min="1" required class="mt-1 block w-full bg-gray-900 border border-gray-700 rounded px-3 py-2" placeholder="5.00">
+        </label>
+
+        <div class="text-center">
+          <button type="submit" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold">Donate</button>
+        </div>
+      </form>
+
+      <div class="mt-6 text-center">
+        <a href="vip.html" class="text-gray-400 hover:text-gray-300 text-sm">← Back to store</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // basic client-side check
+    document.getElementById('donateForm').addEventListener('submit', function(e){
+      const v = parseFloat(document.getElementById('amount').value || 0);
+      if (!v || v < 1) {
+        e.preventDefault();
+        alert('Please enter a valid donation amount (minimum $1).');
+      }
+    });
+  </script>
+</body>
+</html>

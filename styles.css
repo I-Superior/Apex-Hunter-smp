@@ -273,3 +273,83 @@ code {
 
 /* Keep legacy classes harmless */
 .minecraft-bg, .minecraft-overlay, .fire-overlay { display: none; }
+
+:root{
+  --mc-tile-size: 24px;
+  --mc-dark-1: rgba(18,22,28,0.85);
+  --mc-dark-2: rgba(36,41,46,0.7);
+  --mc-stone-1: #7a7f84;
+  --mc-stone-2: #5e6366;
+}
+
+/* Blocky tiled background that mimics a Minecraft-like grid */
+.minecraft-tile {
+  background-color: var(--mc-dark-1);
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.02) 0 calc(var(--mc-tile-size) / 2), transparent calc(var(--mc-tile-size) / 2) var(--mc-tile-size)),
+    linear-gradient(rgba(255,255,255,0.03) 0 calc(var(--mc-tile-size) / 2), transparent calc(var(--mc-tile-size) / 2) var(--mc-tile-size));
+  background-size: var(--mc-tile-size) var(--mc-tile-size), var(--mc-tile-size) var(--mc-tile-size);
+  background-blend-mode: overlay;
+}
+
+/* Slightly different variations used by sections already present in the page */
+.minecraft-dark-bg {
+  /* subtle stone-like tint */
+  background-color: #0f1720;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 6px, transparent 6px 12px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0 6px, transparent 6px 12px);
+  background-size: 24px 24px;
+  mix-blend-mode: overlay;
+}
+
+/* Cave/rocker variant for the features/cave sections */
+.minecraft-cave-bg {
+  background-color: #0b0f12;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.01) 0 8px, rgba(0,0,0,0.06) 8px 16px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.008) 0 8px, rgba(0,0,0,0.05) 8px 16px);
+  background-size: 32px 32px;
+  mix-blend-mode: overlay;
+}
+
+/* Decorative large blocky Minecraft structure silhouette (SVG data URI).
+   Intended to be used as a non-interactive overlay inside #home. */
+.minecraft-structure {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 60% auto;
+  filter: saturate(0.95) contrast(0.95);
+  background-image: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80' preserveAspectRatio='xMidYMax meet'>\
+    <rect width='120' height='80' fill='none'/>\
+    <rect x='20' y='34' width='80' height='36' fill='%23b57b3b'/>\
+    <rect x='0' y='12' width='120' height='30' fill='%23a23d2d'/>\
+    <rect x='50' y='44' width='20' height='26' fill='%23444444'/>\
+    <rect x='28' y='40' width='10' height='10' fill='%23f3e2b8'/>\
+    <rect x='82' y='40' width='10' height='10' fill='%23f3e2b8'/>\
+    <rect x='18' y='50' width='8' height='8' fill='%23665b4a'/>\
+    <rect x='94' y='50' width='8' height='8' fill='%23665b4a'/>\
+  </svg>");
+}
+
+/* Ensure the sections that already reference these helper classes get stacking right */
+section .minecraft-dark-bg,
+section .minecraft-cave-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* Keep the page content above the decorative layers */
+.container, .creators-wrap, .stat-card, .bg-gray-800, .bg-gray-900 {
+  position: relative;
+  z-index: 10;
+}
